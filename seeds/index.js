@@ -25,7 +25,10 @@ const seedDB = async () => {
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(game)}`,
             image: 'https://source.unsplash.com/collection/4959235',
-            description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae deserunt omnis soluta odit eveniet ipsam nulla facere reiciendis? Mollitia aut nam asperiores eligendi soluta doloribus. Sit et iste maxime excepturi.'
+            description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae deserunt omnis soluta odit eveniet ipsam nulla facere reiciendis? Mollitia aut nam asperiores eligendi soluta doloribus. Sit et iste maxime excepturi.',
+            author: '62f7ae7e7f333b523ad3db2d',
+            date: '2022-08-15',
+            time: '12:30'
         })
         await camp.save();
     }
