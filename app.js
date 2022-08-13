@@ -6,8 +6,12 @@ const session = require('express-session');
  const flash = require('connect-flash');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
-const events = require('./routes/events');
-const reviews = require('./routes/reviews');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+const userRoutes = require('./routes/users');
+const eventsRoutes = require('./routes/events');
+const reviewRoutes = require('./routes/reviews');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useUnifiedTopology: true
@@ -43,14 +47,24 @@ app.use(express.static(path.join(__dirname, 'public')))
  app.use(session(sessionConfig))
  app.use(flash());
 
+ app.use(passport.initialize());
+ app.use(passport.session());
+ passport.use(new LocalStrategy(User.authenticate()));
+
+ passport.serializeUser(User.serializeUser());
+ passport.deserializeUser(User.deserializeUser());
+
  app.use((req, res, next) => {
+     console.log(req.session)
+     res.locals.currentUser = req.user;
      res.locals.success = req.flash('success');
      res.locals.error = req.flash('error');
      next();
  });
 
-app.use('/events', events)
-app.use('/events/:id/reviews', reviews)
+ app.use('/', userRoutes);
+ app.use('/events', eventsRoutes)
+ app.use('/events/:id/reviews', reviewRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
