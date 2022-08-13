@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Campground</title>
+    <title>New Event Campground</title>
 </head>
 
 <body>
@@ -17,9 +17,17 @@
             <label for="location">Location</label>
             <input type="text" id="location" name="campground[location]">
         </div>
-        <button>Add Campground</button>
+        <div>
+            <label for="date">Date</label>
+            <input type="date" id="date" name="campground[date]">
+        </div>
+        <div>
+            <label for="time">Time</label>
+            <input type="time" id="time" name="campground[time]">
+        </div>
+        <button>Add Event</button>
     </form>
-    <a href="/campgrounds">All Campgrounds</a>
+    <a href="/campgrounds">All Event Campgrounds</a>
 
 </body>
 
