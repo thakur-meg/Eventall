@@ -25,7 +25,7 @@ const User = require('../models/user');
  }
 
  module.exports.login = (req, res) => {
-     req.flash('success', 'welcome back!');
+     req.flash('success', 'Welcome back!');
      const redirectUrl = req.session.returnTo || '/events';
      delete req.session.returnTo;
      res.redirect(redirectUrl);
