@@ -17,4 +17,6 @@ The website is built using HTML, CSS, Javascript with Express and Passport.
 
 
 <h2>What's next for Eventall<h2>
-The next aim for Eventall is to make it more scalable and easily accessible. I am also hoping to add a user interaction forum on the website in the next version.
+
+The next aim for Eventall is to make it more scalable and easily accessible. I am also hoping to add a user interaction forum on the website in the next
+version.
