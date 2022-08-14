@@ -1,0 +1,14 @@
+.container {
+    height: 80vh;
+}
+
+.btn {
+    background-color: #6F73D2;
+    border: none;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #83C9F4;
+    border: none;
+}
