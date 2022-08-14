@@ -17,7 +17,11 @@ const userRoutes = require('./routes/users');
 const eventsRoutes = require('./routes/events');
 const reviewRoutes = require('./routes/reviews');
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+const MongoDBStore = require("connect-mongo")(session);
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+
+ mongoose.connect(dbUrl, {
     useUnifiedTopology: true
 });
 
@@ -38,7 +42,21 @@ app.use(methodOverride('_method'));
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+ const store = new MongoDBStore({
+     url: dbUrl,
+     secret,
+     touchAfter: 24 * 60 * 60
+ });
+
+ store.on("error", function (e) {
+     console.log("SESSION STORE ERROR", e)
+ })
+
  const sessionConfig = {
+     store,
+     name: 'session',
      secret: 'thisshouldbeabettersecret!',
      resave: false,
      saveUninitialized: true,
